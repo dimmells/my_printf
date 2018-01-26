@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:53:08 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/26 13:27:30 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/01/26 18:29:41 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int		ft_printf(const char *format, ...)
 	while (*format)
 	{
 		if (format[0] == '%')
+		{
 			length += print_arg(&format, list);
+		}
 		else
 		{
 			ft_putchar(format[0]);

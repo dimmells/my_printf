@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:08:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/26 13:37:01 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/01/26 17:47:26 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <stdlib.h>
-# include "include/libft/libft.h"
+# include "libft.h"
 
 typedef struct	s_specifier
 {

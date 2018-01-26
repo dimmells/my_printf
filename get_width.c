@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:12:21 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/24 15:13:39 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/01/26 17:49:57 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void		get_width(t_specifier *ts, char *sp, char *arg)
 		}
 		i++;
 	}
-	if (ts->width < ft_strlen(arg))
+	if (ts->width < (int)ft_strlen(arg))
 		ts->width = ft_strlen(arg);
 }

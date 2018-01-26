@@ -6,13 +6,13 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/26 13:46:16 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/01/26 18:14:10 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-static void		add_precision(t_specifier ts, int number, char *itoa, char **print)
+
+static void		add_precision(t_specifier ts, char *itoa, char **print)
 {
 	int		del;
 
@@ -80,6 +80,7 @@ int				print_int(va_list list, char *sp, int sp_len)
 	char		*print;
 	t_specifier	ts;
 
+	sp_len++; /*DELETE ME*/
 	ts = struct_init();
 	number = va_arg(list, int);
 	itoa = ft_itoa(number);
@@ -99,7 +100,7 @@ int				print_int(va_list list, char *sp, int sp_len)
 		itoa = ft_itoa(number);
 	}
 	print = (char*)malloc(sizeof(char));
-	add_precision(ts, number, itoa, &print);
+	add_precision(ts, itoa, &print);
 	if (ts.space)
 		ts.width--;
 	if (ts.zero)

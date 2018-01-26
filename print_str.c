@@ -6,53 +6,51 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:31:18 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/26 13:14:52 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/01/26 17:52:23 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		print_space(int width, int len, char *str)
+static void		add_space(int width, int len, char **print)
 {
 	int			count;
 
 	if (width < 0)
-	{
 		count = (width * -1) - len;
-		ft_putstr(str);
-	}
 	else
 		count = width - len;
 	while (count > 0)
 	{
-		ft_putchar(' ');
+		*print = strjoin_n_del(" ", *print, 2);
 		count--;
 	}
-	if (width > 0)
-		ft_putstr(str);
 }
 
 int				print_str(va_list list, char *sp)
 {
 	int			width;
-	int			len;
 	char		*str;
 	char		*tmp;
+	char		*print;
+	t_specifier	ts;
 
 	str = va_arg(list, char*);
-	if ((tmp = ft_strchr(sp, '.')))
+/*	if ((tmp = ft_strchr(sp, '.')))
 	{
 		tmp++;
 		len = ft_atoi(tmp);
 	}
 	else
-		len = ft_strlen(str);
-	tmp = ft_strsub(str, 0, len);
+		len = ft_strlen(str);*/
+	ts = struct_init();
+	get_width(&ts, sp, str);
+	print = ft_strsub(str, 0, ts.width);
 	width = ft_atoi(sp + 1);
 	if (width != 0)
-		print_space(width, len, tmp);
-	else
-		ft_putstr(tmp);
+		add_space(width, ts.width, &print);
+	ft_putstr(print);
+	ft_strdel(&print);
 	ft_strdel(&tmp);
 	return (0);
 }

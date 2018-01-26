@@ -6,16 +6,30 @@
 #    By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/29 14:45:07 by ahryhory          #+#    #+#              #
-#    Updated: 2017/11/07 21:44:21 by dmelnyk          ###   ########.fr        #
+#    Updated: 2018/01/26 18:24:35 by dmelnyk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = libftprintf.a
+
+FLAGS = -Wall -Werror -Wextra
 
 OBJ = $(SRC:.c=.o)
 
 SRC =
 
+SRC += ft_printf.c
+SRC += get_specifier_len.c
+SRC += max.c
+SRC += print_arg.c
+SRC += print_str.c
+SRC += print_int.c
+SRC += get_flag.c
+SRC += get_length.c
+SRC += get_precision.c
+SRC += get_width.c
+SRC += struct_init.c
+SRC += strjoin_n_del.c
 SRC += ft_strcat.c
 SRC += ft_strcmp.c
 SRC += ft_strdup.c
@@ -79,18 +93,17 @@ SRC += ft_lstaddlast.c
 SRC += ft_itoa_base.c
 SRC += ft_intsort.c
 
-HED = libft.h
-
 all: $(NAME)
 
-$(NAME):
-	gcc -Wall -Wextra -Werror -c $(SRC) -I $(HED)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
+
+%.o: %.c
+	@gcc $(FLAGS) -I. -c $<
 
 clean:
-	rm -rf $(OBJ)
-
+	@rm -rf $(OBJ)
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
+re:	fclean all
 
-re: fclean all

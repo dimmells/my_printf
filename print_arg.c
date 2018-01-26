@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 14:16:37 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/26 13:07:23 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/01/26 18:15:39 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int			print_arg(const char **format, va_list list)
 	sp = ft_strsub(*format, 0, sp_len);
 	type = (*format)[sp_len - 1];
 	(*(format)) += sp_len;
-	if (type == 's' || type == 'S')
-		length = print_str(list, sp);
-	else if (type == 'd' || type == 'i')
+//	if (type == 's' || type == 'S')
+//		length = print_str(list, sp);
+	if (type == 'd' || type == 'i')
 		length = print_int(list, sp, sp_len);
 	ft_strdel(&sp);
 	return (length);
