@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:23:23 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/26 18:28:45 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/14 15:21:41 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int		main(int ac, char **av)
 {
-	ft_printf("%%");
-	//printf("\n\n%-5s\n", "test");
+	ft_printf("%%.%%.%%.%%.%%.%%.%%.\n");
+	printf("\n%%\n");
 //	system("leaks a.out");
 	return (0);
 }

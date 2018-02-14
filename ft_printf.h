@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:08:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/26 17:47:26 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/14 15:03:47 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,13 @@ int				max(int a, int b);
 int				print_arg(const char **format, va_list list);
 int				print_str(va_list list, char *sp);
 int				print_int(va_list list, char *sp, int sp_len);
+int				print_percent(char*sp);
 void			get_flag(t_specifier *ts, char *sp);
 void			get_length(t_specifier *ts, char *sp);
 void			get_precision(t_specifier *ts, char *sp, int number);
 void			get_width(t_specifier *ts, char *sp, char *arg);
+void			add_space(t_specifier ts, char **print);
+void			add_zeroes(t_specifier ts, char **print);
 t_specifier		struct_init(void);
 char			*strjoin_n_del(char *s1, char *s2, int del);
 

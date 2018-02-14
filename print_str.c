@@ -6,51 +6,49 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:31:18 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/26 17:52:23 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/14 14:46:58 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		add_space(int width, int len, char **print)
+static void		get_str_precision(t_specifier *ts, char *sp, char *str)
 {
-	int			count;
+	char		*tmp;
 
-	if (width < 0)
-		count = (width * -1) - len;
-	else
-		count = width - len;
-	while (count > 0)
+	if ((tmp = ft_strchr(sp, '.')))
 	{
-		*print = strjoin_n_del(" ", *print, 2);
-		count--;
+		tmp++;
+		ts->precision = ft_atoi(tmp);
 	}
+	else
+		ts->precision = ft_strlen(str);
 }
 
 int				print_str(va_list list, char *sp)
 {
-	int			width;
 	char		*str;
-	char		*tmp;
 	char		*print;
 	t_specifier	ts;
 
 	str = va_arg(list, char*);
-/*	if ((tmp = ft_strchr(sp, '.')))
+	if (!str)
 	{
-		tmp++;
-		len = ft_atoi(tmp);
+		ft_putstr("(null)");
+		return (6);
 	}
-	else
-		len = ft_strlen(str);*/
 	ts = struct_init();
+	get_str_precision(&ts, sp, str);
 	get_width(&ts, sp, str);
-	print = ft_strsub(str, 0, ts.width);
-	width = ft_atoi(sp + 1);
-	if (width != 0)
-		add_space(width, ts.width, &print);
+	if (ts.width == (int)ft_strlen(str))
+		ts.width = 0;
+	get_flag(&ts, sp);
+	print = ft_strsub(str, 0, ts.precision);
+	ts.length = ft_strlen(print);
+	if (ts.width != 0)
+		add_space(ts, &print);
 	ft_putstr(print);
+	ts.length = ft_strlen(print);
 	ft_strdel(&print);
-	ft_strdel(&tmp);
-	return (0);
+	return (ts.length);
 }

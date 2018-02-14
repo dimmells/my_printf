@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_specifier_len.c                                :+:      :+:    :+:   */
+/*   print_percent.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 15:50:37 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/14 11:17:54 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/02/14 10:54:13 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/02/14 15:08:01 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			get_specifier_len(const char **format)
+static void		add_gifts(t_specifier ts, char **print)
 {
-	char	*types;
-	int		i;
-	int		j;
+	if (!ts.zero || ts.minus)
+		add_space(ts, print);
+	else if (!ts.minus)
+		add_zeroes(ts, print);
+}
 
-	types = "sSpdDioOuUxXcC%";
-	i = 1;
-	while ((*format)[i])
-	{
-		j = 0;
-		while (types[j])
-		{
-			if ((*format)[i] == types[j])
-				return (i + 1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
+int				print_percent(char *sp)
+{
+	t_specifier	ts;
+	char		*print;
+
+	print = ft_strdup("%");
+	ts = struct_init();
+	get_width(&ts, sp, "%");
+	get_flag(&ts, sp);
+	if (ts.width > 1)
+		add_gifts(ts, &print);
+	ft_putstr(print);
+	ft_strdel(&print);
+	return (ts.width);
 }

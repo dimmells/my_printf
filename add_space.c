@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_specifier_len.c                                :+:      :+:    :+:   */
+/*   add_space.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 15:50:37 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/14 11:17:54 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/02/14 14:43:59 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/02/14 15:02:50 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			get_specifier_len(const char **format)
+void		add_space(t_specifier ts, char **print)
 {
-	char	*types;
-	int		i;
-	int		j;
+	int		count;
 
-	types = "sSpdDioOuUxXcC%";
-	i = 1;
-	while ((*format)[i])
+	count = ts.width - ft_strlen(*print);
+	if (!ts.minus)
+	while (count > 0)
 	{
-		j = 0;
-		while (types[j])
-		{
-			if ((*format)[i] == types[j])
-				return (i + 1);
-			j++;
-		}
-		i++;
+		*print = strjoin_n_del(" ", *print, 2);
+		count--;
 	}
-	return (0);
+	else if (ts.minus)
+		while (count > 0)
+		{
+			*print = strjoin_n_del(*print, " ", 1);
+			count--;
+		}
 }
