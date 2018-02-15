@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:10:11 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/26 13:46:18 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/15 12:31:06 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void		get_precision(t_specifier *ts, char *sp, int number)
 			ts->precision = 0;
 	}
 	else
-		ts->precision = 0;
+		ts->precision = -1;
 }

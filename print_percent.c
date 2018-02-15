@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 10:54:13 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/14 15:08:01 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/15 12:54:13 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		add_gifts(t_specifier ts, char **print)
 {
 	if (!ts.zero || ts.minus)
-		add_space(ts, print);
+		add_space_tostr(ts, print);
 	else if (!ts.minus)
 		add_zeroes(ts, print);
 }

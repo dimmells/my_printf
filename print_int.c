@@ -6,42 +6,15 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/14 14:59:15 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/15 14:17:21 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-static void		add_precision(t_specifier ts, char *itoa, char **print, int nbr)
-{
-	int		del;
-
-	del = 0;
-	ts.precision -= ft_strlen(itoa);
-	while (ts.precision > 0)
-	{
-		*print = strjoin_n_del(*print, "0", 1);
-		del = 1;
-		ts.precision--;
-	}
-	nbr += 0;
-	//if (nbr == 0 && ts.precision <= 0)
-	//	*print = strjoin_n_del(*print, "", 1);
-	//else
-		*print = strjoin_n_del(*print, itoa, 1);
-}
-
-static void		add_sign(t_specifier ts, char **print)
-{
-	if (ts.plus == 1)
-		*print = strjoin_n_del("+", *print, 2);
-	if (ts.plus == -1)
-		*print = strjoin_n_del("-", *print, 2);
-}
 
 static void		add_zero(t_specifier ts, char **print)
 {
-	int		count;
+	int			count;
 
 	if (ts.plus != 0)
 		ts.width--;
@@ -56,29 +29,34 @@ static void		add_zero(t_specifier ts, char **print)
 	add_sign(ts, print);
 }
 
-
-static void		add_spaces(t_specifier ts, char **print)
+static int		setup(t_specifier *ts, char **itoa, int number)
 {
-	int			count;
+	int			kostyl;
 
-	add_sign(ts, print);
-	if (ts.space && ts.plus == 0)
+	if (number == 0 && ts->precision == 0)
 	{
-		*print = strjoin_n_del(" ", *print, 2);
-		ts.width++;
+		ft_strdel(itoa);
+		if (ts->width == 1)
+			ts->width--;
+		*itoa = ft_strdup("");
 	}
-	count = ts.width - ft_strlen(*print);
-	while (count > 0)
+	if (ts->minus || ts->precision > 0)
+		ts->zero = 0;
+	kostyl = 0;
+	if (number < 0)
 	{
-		if (!ts.minus)
-			*print = strjoin_n_del(" ", *print, 2);
-		else
-			*print = strjoin_n_del(*print, " ", 1);
-		count--;
+		ts->plus = -1;
+		ts->space = 0;
+		number *= -1;
+		ft_strdel(itoa);
+		*itoa = ft_itoa(number);
+		if (!ft_isdigit((*itoa)[0]))
+			kostyl = 1;
 	}
+	return (kostyl);
 }
 
-int				print_int(va_list list, char *sp, int sp_len)
+int				print_int(va_list list, char *sp)
 {
 	int			number;
 	int			kostyl;
@@ -86,36 +64,18 @@ int				print_int(va_list list, char *sp, int sp_len)
 	char		*print;
 	t_specifier	ts;
 
-	sp_len++; /*DELETE ME*/
 	ts = struct_init();
 	number = va_arg(list, int);
-	itoa = ft_itoa(number);
-	ts.length = ft_strlen(itoa);
-	get_precision(&ts, sp, number);
-	get_width(&ts, sp, itoa);
-	get_flag(&ts, sp);
-	get_length(&ts, sp);
-	if (ts.minus || ts.precision > 0)
-		ts.zero = 0;
-	kostyl = 0;
-	if (number < 0)
-	{
-		ts.plus = -1;
-		ts.space = 0;
-		number *= -1;
-		ft_strdel(&itoa);
-		itoa = ft_itoa(number);
-		if (!ft_isdigit(itoa[0]))
-			kostyl = 1;
-	}
+	itoa = get_specifier_info(&ts, sp, number);
+	kostyl = setup(&ts, &itoa, number);
 	print = (char*)malloc(sizeof(char));
-	add_precision(ts, itoa + kostyl, &print, number);
+	add_precision(ts, itoa + kostyl, &print);
 	if (ts.space)
 		ts.width--;
 	if (ts.zero)
 		add_zero(ts, &print);
 	else
-		add_spaces(ts, &print);
+		add_space(ts, &print);
 	ft_putstr(print);
 	number = ft_strlen(print);
 	ft_strdel(&print);

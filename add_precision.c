@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_space.c                                         :+:      :+:    :+:   */
+/*   add_precision.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 13:01:56 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/15 13:06:45 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/02/15 12:57:00 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/02/15 13:00:15 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			add_space(t_specifier ts, char **print)
+void		add_precision(t_specifier ts, char *itoa, char **print)
 {
-	int			count;
-
-	add_sign(ts, print);
-	if (ts.space && ts.plus == 0)
+	ts.precision -= ft_strlen(itoa);
+	while (ts.precision > 0)
 	{
-		*print = strjoin_n_del(" ", *print, 2);
-		ts.width++;
+		*print = strjoin_n_del(*print, "0", 1);
+		ts.precision--;
 	}
-	count = ts.width - ft_strlen(*print);
-	while (count > 0)
-	{
-		if (!ts.minus)
-			*print = strjoin_n_del(" ", *print, 2);
-		else
-			*print = strjoin_n_del(*print, " ", 1);
-		count--;
-	}
+	*print = strjoin_n_del(*print, itoa, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:31:18 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/14 14:46:58 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/15 12:52:13 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int				print_str(va_list list, char *sp)
 	print = ft_strsub(str, 0, ts.precision);
 	ts.length = ft_strlen(print);
 	if (ts.width != 0)
-		add_space(ts, &print);
+		add_space_tostr(ts, &print);
 	ft_putstr(print);
 	ts.length = ft_strlen(print);
 	ft_strdel(&print);

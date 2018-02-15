@@ -6,7 +6,7 @@
 #    By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/29 14:45:07 by ahryhory          #+#    #+#              #
-#    Updated: 2018/02/14 15:03:21 by dmelnyk          ###   ########.fr        #
+#    Updated: 2018/02/15 14:05:20 by dmelnyk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,14 @@ SRC += get_flag.c
 SRC += get_length.c
 SRC += get_precision.c
 SRC += get_width.c
+SRC += get_specifier_info.c
 SRC += struct_init.c
 SRC += strjoin_n_del.c
-SRC += add_space.c
+SRC += add_space_tostr.c
 SRC += add_zeroes.c
+SRC += add_sign.c
+SRC += add_precision.c
+SRC += add_space.c
 SRC += ft_strcat.c
 SRC += ft_strcmp.c
 SRC += ft_strdup.c
