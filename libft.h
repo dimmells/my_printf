@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 13:39:14 by dmelnyk           #+#    #+#             */
-/*   Updated: 2017/11/07 20:52:58 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/16 12:29:28 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char				*ft_strncpy(char *dest, const char *src, size_t n);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strnew(size_t size);
 char				*ft_strnstr(const char *hstck, const char *ndl, size_t len);
+char				*ft_strrev(char *str);
 char				*ft_strrchr(const char *str, int c);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strstr(const char *haystack, const char *needle);

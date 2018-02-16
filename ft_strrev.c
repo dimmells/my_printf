@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_space.c                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 13:01:56 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/16 15:25:30 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/02/16 12:27:36 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/02/16 15:26:02 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void			add_space(t_specifier ts, char **print)
+char				*ft_strrev(char *str)
 {
-	int			count;
+	int				i;
+	int				j;
+	char			tmp;
 
-	add_sign(ts, print);
-	if (ts.space && ts.plus == 0)
+	i = 0;
+	j = ft_strlen(str) - 1;
+	while (i < j)
 	{
-		*print = strjoin_n_del(" ", *print, 2);
-		ts.width++;
+		tmp = str[i];
+		str[i] = str[j];
+		str[j] = tmp;
+		i++;
+		j--;
 	}
-	count = ts.width - ft_strlen(*print);
-	while (count > 0)
-	{
-		if (!ts.minus)
-			*print = strjoin_n_del(" ", *print, 2);
-		else
-			*print = strjoin_n_del(*print, " ", 1);
-		count--;
-	}
+	return (str);
 }

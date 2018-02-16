@@ -6,7 +6,7 @@
 #    By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/29 14:45:07 by ahryhory          #+#    #+#              #
-#    Updated: 2018/02/15 14:05:20 by dmelnyk          ###   ########.fr        #
+#    Updated: 2018/02/16 14:55:26 by dmelnyk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ SRC += print_arg.c
 SRC += print_str.c
 SRC += print_int.c
 SRC += print_percent.c
+SRC += print_hex.c
+SRC += print_hex_upper.c
+SRC += print_octal.c
 SRC += get_flag.c
 SRC += get_length.c
 SRC += get_precision.c
@@ -37,6 +40,7 @@ SRC += add_zeroes.c
 SRC += add_sign.c
 SRC += add_precision.c
 SRC += add_space.c
+SRC += itoa_base.c
 SRC += ft_strcat.c
 SRC += ft_strcmp.c
 SRC += ft_strdup.c

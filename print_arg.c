@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 14:16:37 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/15 12:49:07 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/16 14:59:08 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ int			print_arg(const char **format, va_list list)
 		length = print_int(list, sp);
 	else if (type == '%')
 		length = print_percent(sp);
+	else if (type == 'x')
+		length = print_hex(list, sp);
+	else if (type == 'X')
+		length = print_hex_upper(list, sp);
+	else if (type == 'o')
+		length = print_octal(list, sp);
 	ft_strdel(&sp);
 	return (length);
 }
