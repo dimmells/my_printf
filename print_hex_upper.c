@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/16 15:27:03 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/17 16:16:56 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 	ft_strdel(itoa);
 	*itoa = itoa_base(number, 16);
 	ts->plus = 0;
+	ts->length = ft_strlen(*itoa);
 	if (number == 0 && ts->precision == 0)
 	{
 		ft_strdel(itoa);

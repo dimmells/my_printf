@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:08:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/16 14:52:47 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/17 15:32:56 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int				print_percent(char*sp);
 int				print_hex(va_list list, char *sp);
 int				print_hex_upper(va_list list, char *sp);
 int				print_octal(va_list list, char *sp);
+int				print_ui(va_list list, char *sp);
+int				print_char(va_list list, char *sp);
+int				print_wchar_t(va_list list, char *sp);
 void			get_flag(t_specifier *ts, char *sp);
 void			get_length(t_specifier *ts, char *sp);
 void			get_precision(t_specifier *ts, char *sp, int number);
@@ -53,6 +56,7 @@ void			add_zeroes(t_specifier ts, char **print);
 void			add_sign(t_specifier ts, char **print);
 void			add_space(t_specifier ts, char **print);
 void			add_precision(t_specifier ts, char *itoa, char **print);
+void			ft_putwchar_t(wchar_t wc);
 t_specifier		struct_init(void);
 char			*strjoin_n_del(char *s1, char *s2, int del);
 char			*get_specifier_info(t_specifier *ts, char *sp, int number);

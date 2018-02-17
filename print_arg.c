@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 14:16:37 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/16 14:59:08 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/17 15:33:45 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ int			print_arg(const char **format, va_list list)
 		length = print_hex_upper(list, sp);
 	else if (type == 'o')
 		length = print_octal(list, sp);
+	else if (type == 'u')
+		length = print_ui(list, sp);
+	else if (type == 'c')
+		length = print_char(list, sp);
+	else if (type == 'C')
+		length = print_wchar_t(list, sp);
 	ft_strdel(&sp);
 	return (length);
 }
