@@ -6,62 +6,81 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 13:31:05 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/17 15:30:45 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/18 15:26:47 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <unistd.h>
 
-static void	six_byte(wchar_t w)
+static int			second_mask(unsigned int c, unsigned int mask)
 {
-	ft_putchar(w>>30 | 0xFC);
-	ft_putchar(w>>(24 & 63) | 0x80);
-	ft_putchar(w>>(18 & 63) | 0x80);
-	ft_putchar(w>>(12 & 63) | 0x80);
-	ft_putchar(w>>(6 & 63) | 0x80);
-	ft_putchar((w&63) | 0x80);
+	unsigned char	o2 = (c << 26) >> 26;
+	unsigned char	o1 = ((c >> 6) << 27) >> 27;
+	unsigned char	result;
+
+	result = (mask >> 8) | o1;
+	write(1, &result, 1);
+	result = ((mask << 24) >> 24) | o2;
+	write(1, &result, 1);
+	return (2);
 }
 
-static void	five_byte(wchar_t w)
+static int			third_mask(unsigned int c, unsigned int mask)
 {
-	ft_putchar(w>>24 | 0xF8);
-	ft_putchar(w>>(18 & 63) | 0x80);
-	ft_putchar(w>>(12 & 63) | 0x80);
-	ft_putchar(w>>(6 & 63) | 0x80);
-	ft_putchar((w&63) | 0x80);
+	unsigned char	o3 = (c << 26) >> 26;
+	unsigned char	o2 = ((c >> 6) << 26) >> 26;
+	unsigned char	o1 = ((c >> 12) << 28) >> 28;
+	unsigned char	result;
+
+	result = (mask >> 16) | o1;
+	write(1, &result, 1);
+	result = ((mask << 16) >> 24) | o2;
+	write(1, &result, 1);
+	result = ((mask << 24) >> 24) | o3;
+	write(1, &result, 1);
+	return (3);
 }
 
-static void	four_byte(wchar_t w)
+static int			fourth_mask(unsigned int c, unsigned int mask)
 {
-	ft_putchar(w>>18 | 0xF0);
-	ft_putchar(w>>(12 & 63) | 0x80);
-	ft_putchar(w>>(6 & 63) | 0x80);
-	ft_putchar((w&63) | 0x80);
+	unsigned char o4 = (c << 26) >> 26;
+	unsigned char o3 = ((c >> 6) << 26) >> 26;
+	unsigned char o2 = ((c >> 12) << 26) >> 26;
+	unsigned char o1 = ((c >> 18) << 29) >> 29;
+	unsigned char	result;
+
+	result = (mask >> 24) | o1;
+	write(1, &result, 1);
+	result = ((mask << 8) >> 24) | o2;
+	write(1, &result, 1);
+	result = ((mask << 16) >> 24) | o3;
+	write(1, &result, 1);
+	result = ((mask << 24) >> 24) | o4;
+	write(1, &result, 1);
+	return (4);
 }
 
-static void	tree_byte(wchar_t w)
+int					ft_putwchar_t(unsigned int wc)
 {
-	ft_putchar(w>>12 | 0xE0);
-	ft_putchar(w>>(6 & 63) | 0x80);
-	ft_putchar((w&63) | 0x80);
-}
+	int				size;
+	int				length;
+	unsigned int	mask3;
+	unsigned int	mask2;
+	unsigned int	mask;
 
-void		ft_putwchar_t(wchar_t w)
-{
-
-	if(w<128)
-		ft_putchar(w);
-	else if(w<2048)
-	{
-		ft_putchar(w>>6 | 0xC0);
-		ft_putchar((w&63) | 0x80);
-	}
-	else if(w<1<<16)
-		tree_byte(w);
-	else if(w<1<<21)
-		four_byte(w);
-	else if(w<1<<26)
-		five_byte(w);
+	mask = 49280;
+	mask2 = 14712960;
+	mask3= 4034953344;
+	size = get_bin_size(wc);
+	length = 1;
+	if (size <= 7)
+		write(1, &wc, 1);
+	else if (size <= 11)
+		length = second_mask(wc, mask);
+	else if (size <= 16)
+		length = third_mask(wc, mask2);
 	else
-		six_byte(w);
+		length = fourth_mask(wc, mask3);
+	return (length);
 }

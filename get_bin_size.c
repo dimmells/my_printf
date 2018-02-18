@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   get_bin_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/30 17:28:39 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/18 12:06:34 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/02/18 15:25:27 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/02/18 15:29:26 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#include "ft_printf.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+int			get_bin_size(unsigned int wc)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	char	*itoa;
+	int		size;
+
+	itoa = itoa_base(wc, 2);
+	size = ft_strlen(itoa);
+	ft_strdel(&itoa);
+	return (size);
 }

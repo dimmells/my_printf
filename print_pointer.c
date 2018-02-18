@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hex.c                                        :+:      :+:    :+:   */
+/*   print_pointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/18 12:39:53 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/18 13:32:03 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void			add_hash(t_specifier *ts, char **print, uintmax_t number)
+static void			add_hash(t_specifier *ts, char **print)
 {
-	if (number != 0 && ts->hash == 1)
+	if (ts->hash == 1)
 		*print = strjoin_n_del("0x", *print, 2);
 }
 
-static void			add_zero(t_specifier ts, char **print, uintmax_t number)
+static void			add_zero(t_specifier ts, char **print)
 {
 	int				count;
 
@@ -34,7 +34,7 @@ static void			add_zero(t_specifier ts, char **print, uintmax_t number)
 	}
 	if (ts.space && ts.plus == 0)
 		*print = strjoin_n_del(" ", *print, 2);
-	add_hash(&ts, print, number);
+	add_hash(&ts, print);
 }
 
 static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
@@ -59,28 +59,15 @@ static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 		ts->zero = 0;
 }
 
-static char			*to_upper(char *str)
+int					print_pointer(va_list list, char *sp)
 {
-	int				i;
-
-	i = 0;
-	while (str[i])
-	{
-		str[i] = ft_toupper(str[i]);
-		i++;
-	}
-	return (str);
-}
-
-int					print_hex_upper(va_list list, char *sp)
-{
-	unsigned int	number;
+	uintmax_t		number;
 	char			*itoa;
 	char			*print;
 	t_specifier		ts;
 
 	ts = struct_init();
-	number = va_arg(list, unsigned int);
+	number = va_arg(list, uintmax_t);
 	itoa = get_specifier_info(&ts, sp, number);
 	setup(&ts, &itoa, number);
 	print = (char*)malloc(sizeof(char));
@@ -88,13 +75,13 @@ int					print_hex_upper(va_list list, char *sp)
 	if (ts.space)
 		ts.width--;
 	if (ts.zero)
-		add_zero(ts, &print, number);
+		add_zero(ts, &print);
 	else
 	{
-		add_hash(&ts, &print, number);
+		add_hash(&ts, &print);
 		add_space(ts, &print);
 	}
-	ft_putstr(to_upper(print));
+	ft_putstr(print);
 	number = ft_strlen(print);
 	ft_strdel(&print);
 	ft_strdel(&itoa);

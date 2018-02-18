@@ -6,12 +6,12 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/17 16:43:05 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/18 12:39:47 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
 static void			add_hash(t_specifier *ts, char **print, uintmax_t number)
 {
 	if (number != 0 && ts->hash == 1)
@@ -37,15 +37,17 @@ static void			add_zero(t_specifier ts, char **print, uintmax_t number)
 	add_hash(&ts, print, number);
 }
 
-static void			setup(t_specifier *ts, char **itoa, uintmax_t number, int flag)
+static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 {
+	int				len;
+
+	len = ft_strlen(*itoa);
 	ft_strdel(itoa);
 	*itoa = itoa_base(number, 16);
 	ts->plus = 0;
 	ts->length = ft_strlen(*itoa);
-	if (flag)
-		ts->width = ft_strlen(*itoa);
-	flag++;
+	if (len == ts->width)
+		ts->width = ts->length;
 	if (number == 0 && ts->precision == 0)
 	{
 		ft_strdel(itoa);
@@ -63,15 +65,11 @@ int					print_hex(va_list list, char *sp)
 	char			*itoa;
 	char			*print;
 	t_specifier		ts;
-	int				flag;
 
 	ts = struct_init();
 	number = va_arg(list, unsigned int);
 	itoa = get_specifier_info(&ts, sp, number);
-	flag = 0;
-	if ((int)ft_strlen(itoa) == ts.width)
-		flag = 1;
-	setup(&ts, &itoa, number, flag);
+	setup(&ts, &itoa, number);
 	print = (char*)malloc(sizeof(char));
 	add_precision(ts, itoa, &print);
 	if (ts.space)
