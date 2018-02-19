@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_width.c                                        :+:      :+:    :+:   */
+/*   ft_putwstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/24 15:12:21 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/19 15:18:40 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/02/19 16:08:14 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/02/19 16:12:29 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		get_width(t_specifier *ts, char *sp)
+int			ft_putwstr(wchar_t *wstr)
 {
 	int		i;
+	int		len;
 
+	len = 0;
 	i = 0;
-	while (sp[i])
+	while (wstr[i])
 	{
-		if (sp[i] == '0')
-			i++;
-		if (sp[i] == '.')
-			break ;
-		if (ft_isdigit((sp + i)[0]))
-		{
-			ts->width = (ft_atoi(sp + i));
-			break ;
-		}
+		len += ft_putwchar_t((unsigned char)wstr[i]);
 		i++;
 	}
+	return (len);
 }

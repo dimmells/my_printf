@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 14:16:37 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/18 13:21:56 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/19 16:17:26 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int			print_arg(const char **format, va_list list)
 	if (sp_len == 0)
 		sp_len++;
 	(*(format)) += sp_len;
-	if (type == 's' || type == 'S')
+	if (type == 's')
 		length = print_str(list, sp);
+	else if (type == 'S')
+		length = print_wstr(list, sp);
 	else if (type == 'd' || type == 'i')
 		length = print_int(list, sp);
 	else if (type == '%')
@@ -45,7 +47,7 @@ int			print_arg(const char **format, va_list list)
 	else if (type == 'C')
 		length = print_wchar_t(list, sp);
 	else if (type == 'p')
-		length = print_pointer(list, "%#x");
+		length = print_pointer(list, sp);
 	ft_strdel(&sp);
 	return (length);
 }

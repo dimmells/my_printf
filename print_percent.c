@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 10:54:13 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/15 12:54:13 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/19 15:27:39 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ int				print_percent(char *sp)
 
 	print = ft_strdup("%");
 	ts = struct_init();
-	get_width(&ts, sp, "%");
+	get_width(&ts, sp);
 	get_flag(&ts, sp);
+	if (ts.width < 1)
+		ts.width = 1;
 	if (ts.width > 1)
 		add_gifts(ts, &print);
 	ft_putstr(print);

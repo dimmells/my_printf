@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:43:59 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/16 15:24:48 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/19 13:16:37 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void		add_space_tostr(t_specifier ts, char **print)
 	if (!ts.minus)
 		while (count > 0)
 		{
-			*print = strjoin_n_del(" ", *print, 2);
+			if (ts.zero)
+				*print = strjoin_n_del("0", *print, 2);
+			else
+				*print = strjoin_n_del(" ", *print, 2);
 			count--;
 		}
 	else if (ts.minus)

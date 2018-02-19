@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:08:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/18 15:29:04 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/19 16:18:17 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,13 @@ int				print_wchar_t(va_list list, char *sp);
 int				print_pointer(va_list list, char *sp);
 int				ft_putwchar_t(unsigned int wc);
 int				get_bin_size(unsigned int wc);
+int				get_size_wchar_t(unsigned int wc);
+int				ft_putwstr(wchar_t *wstr);
+int				print_wstr(va_list list, char *sp);
 void			get_flag(t_specifier *ts, char *sp);
 void			get_length(t_specifier *ts, char *sp);
 void			get_precision(t_specifier *ts, char *sp, int number);
-void			get_width(t_specifier *ts, char *sp, char *arg);
+void			get_width(t_specifier *ts, char *sp);
 void			add_space_tostr(t_specifier ts, char **print);
 void			add_zeroes(t_specifier ts, char **print);
 void			add_sign(t_specifier ts, char **print);
