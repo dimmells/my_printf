@@ -6,7 +6,7 @@
 #    By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/29 14:45:07 by ahryhory          #+#    #+#              #
-#    Updated: 2018/02/19 16:18:35 by dmelnyk          ###   ########.fr        #
+#    Updated: 2018/02/20 16:42:21 by dmelnyk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRC += print_str.c
 SRC += print_int.c
 SRC += print_percent.c
 SRC += print_hex.c
-SRC += print_hex_upper.c
 SRC += print_octal.c
 SRC += print_ui.c
 SRC += print_char.c
@@ -40,6 +39,8 @@ SRC += get_width.c
 SRC += get_specifier_info.c
 SRC += get_bin_size.c
 SRC += get_size_wchar_t.c
+SRC += get_argument_int.c
+SRC += get_argument_base.c
 SRC += struct_init.c
 SRC += strjoin_n_del.c
 SRC += add_space_tostr.c
@@ -50,6 +51,7 @@ SRC += add_space.c
 SRC += itoa_base.c
 SRC += ft_putwchar_t.c
 SRC += ft_putwstr.c
+SRC += ft_str_toupper.c
 SRC += ft_strcat.c
 SRC += ft_strcmp.c
 SRC += ft_strdup.c

@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 12:52:17 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 16:41:22 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 
 	len = ft_strlen(*itoa);
 //	ft_strdel(itoa);
-	*itoa = itoa_base(number, 16);
+//	*itoa = itoa_base(number, 16);
 	ts->plus = 0;
 	ts->length = ft_strlen(*itoa);
 	if (len == ts->width)
@@ -59,7 +59,7 @@ static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 		ts->zero = 0;
 }
 
-int					print_hex(va_list list, char *sp)
+int					print_hex(va_list list, char *sp, char type)
 {
 	unsigned int	number;
 	char			*itoa;
@@ -67,8 +67,17 @@ int					print_hex(va_list list, char *sp)
 	t_specifier		ts;
 
 	ts = struct_init();
-	number = va_arg(list, unsigned int);
-	itoa = get_specifier_info(&ts, sp, number);
+	get_flag(&ts, sp);
+	get_length(&ts, sp);
+	itoa = get_argument_base(list, &ts, 16);
+	ts.length = ft_strlen(itoa);
+	number = 1;
+	if (ft_atoi(itoa) == 0)
+		number = 0;
+	get_precision(&ts, sp, number);
+    get_width(&ts, sp);
+	if (ts.width < ts.length)
+		ts.width = ts.length;
 	setup(&ts, &itoa, number);
 	print = (char*)malloc(sizeof(char));
 	add_precision(ts, itoa, &print);
@@ -81,7 +90,10 @@ int					print_hex(va_list list, char *sp)
 		add_hash(&ts, &print, number);
 		add_space(ts, &print);
 	}
-	ft_putstr(print);
+	if (type == 'x')
+		ft_putstr(print);
+	else
+		ft_putstr(ft_str_toupper(print));
 	number = ft_strlen(print);
 //	ft_strdel(&print);
 //	ft_strdel(&itoa);

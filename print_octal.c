@@ -6,12 +6,12 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 12:54:06 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 16:49:25 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
 static void			add_hash(t_specifier *ts, char **print, uintmax_t number)
 {
 	if (ts->hash == 1 && number != 0)
@@ -43,7 +43,7 @@ static void			add_zero(t_specifier ts, char **print, uintmax_t number)
 static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 {
 //	ft_strdel(itoa);
-	*itoa = itoa_base(number, 8);
+//	*itoa = itoa_base(number, 8);
 	ts->plus = 0;
 	ts->length = ft_strlen(*itoa);
 	if (number == 0 && ts->precision == 0)
@@ -63,7 +63,7 @@ static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 		ts->zero = 0;
 }
 
-int					print_octal(va_list list, char *sp)
+int					print_octal(va_list list, char *sp, char type)
 {
 	unsigned int	number;
 	char			*itoa;
@@ -71,8 +71,19 @@ int					print_octal(va_list list, char *sp)
 	t_specifier		ts;
 
 	ts = struct_init();
-	number = va_arg(list, unsigned int);
-	itoa = get_specifier_info(&ts, sp, number);
+	get_flag(&ts, sp);
+	get_length(&ts, sp);
+	if (type == 'O')
+		ts.l = 1;
+	itoa = get_argument_base(list, &ts, 8);
+	ts.length = ft_strlen(itoa);
+	number = 1;
+	if (ft_atoi(itoa) == 0)
+	number = 0;
+	get_precision(&ts, sp, number);
+	get_width(&ts, sp);
+	if (ts.width < ts.length)
+		ts.width = ts.length;
 	setup(&ts, &itoa, number);
 	print = (char*)malloc(sizeof(char));
 	add_precision(ts, itoa, &print);

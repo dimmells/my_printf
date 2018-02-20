@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:41:56 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/24 14:20:04 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 14:09:14 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void		get_length(t_specifier *ts, char *sp)
 			ts->hh = 1;
 		else
 			ts->h = 1;
+		ts->is_it_have_size = 1;
 	}
 	else if (sp[len_end] == 'l')
 	{
@@ -30,9 +31,16 @@ void		get_length(t_specifier *ts, char *sp)
 			ts->ll = 1;
 		else
 			ts->l = 1;
+		ts->is_it_have_size = 1;
 	}
 	else if (sp[len_end] == 'j')
+	{
 		ts->j = 1;
+		ts->is_it_have_size = 1;
+	}
 	else if (sp[len_end] == 'z')
+	{
 		ts->z = 1;
+		ts->is_it_have_size = 1;
+	}
 }

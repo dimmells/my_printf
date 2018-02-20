@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 12:34:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/24 14:20:29 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 14:03:57 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_specifier		struct_init(void)
 	ts.space = 0;
 	ts.hash = 0;
 	ts.zero = 0;
+	ts.is_it_have_size = 0;
 	ts.hh = 0;
 	ts.h = 0;
 	ts.l = 0;

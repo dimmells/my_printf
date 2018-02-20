@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 14:16:37 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 12:49:53 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 16:50:19 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,14 @@ int			print_arg(const char **format, va_list list)
 		length = print_str(list, sp);
 	else if (type == 'S')
 		length = print_wstr(list, sp);
-	else if (type == 'd' || type == 'i')
-		length = print_int(list, sp);
+	else if (type == 'd' || type == 'i' || type == 'D')
+		length = print_int(list, sp, type);
 	else if (type == '%')
 		length = print_percent(sp);
-	else if (type == 'x')
-		length = print_hex(list, sp);
-	else if (type == 'X')
-		length = print_hex_upper(list, sp);
-	else if (type == 'o')
-		length = print_octal(list, sp);
+	else if (type == 'x' || type == 'X')
+		length = print_hex(list, sp, type);
+	else if (type == 'o' || type == 'O')
+		length = print_octal(list, sp, type);
 	else if (type == 'u')
 		length = print_ui(list, sp);
 	else if (type == 'c')

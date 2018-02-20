@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:08:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/19 16:18:17 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 16:49:44 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_specifier
 	int			space;
 	int			hash;
 	int			zero;
+	int			is_it_have_size;
 	int			hh;
 	int			h;
 	int			l;
@@ -39,11 +40,10 @@ int				get_specifier_len(const char **format);
 int				max(int a, int b);
 int				print_arg(const char **format, va_list list);
 int				print_str(va_list list, char *sp);
-int				print_int(va_list list, char *sp);
+int				print_int(va_list list, char *sp, char type);
 int				print_percent(char*sp);
-int				print_hex(va_list list, char *sp);
-int				print_hex_upper(va_list list, char *sp);
-int				print_octal(va_list list, char *sp);
+int				print_hex(va_list list, char *sp, char type);
+int				print_octal(va_list list, char *sp, char type);
 int				print_ui(va_list list, char *sp);
 int				print_char(va_list list, char *sp);
 int				print_wchar_t(va_list list, char *sp);
@@ -66,5 +66,8 @@ t_specifier		struct_init(void);
 char			*strjoin_n_del(char *s1, char *s2, int del);
 char			*get_specifier_info(t_specifier *ts, char *sp, int number);
 char			*itoa_base(uintmax_t number, int base);
+char			*get_argument_int(va_list list, t_specifier *ts);
+char			*get_argument_base(va_list list, t_specifier *ts, int base);
+char			*ft_str_toupper(char *str);
 
 #endif
