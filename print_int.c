@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 12:45:34 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 13:13:50 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int				print_int(va_list list, char *sp)
 	char		*print;
 	t_specifier	ts;
 
+	print = (char*)malloc(sizeof(char) * 5);
+	free(&print);
 	ts = struct_init();
 	number = va_arg(list, int);
 	itoa = get_specifier_info(&ts, sp, number);
