@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:31:18 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/19 15:28:25 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 13:00:56 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void		print_with_space(t_specifier *ts, char **print, unsigned int c)
 	{
 		while (count > 0)
 		{
-			*print = strjoin_n_del(" ", *print, 2);
+			*print = strjoin_n_del(" ", *print, 0);
 			count--;
 		}
 		ft_putstr(*print);
@@ -48,7 +48,7 @@ static void		print_with_space(t_specifier *ts, char **print, unsigned int c)
 		ft_putwchar_t(c);
 		while (count > 0)
 		{
-			*print = strjoin_n_del(*print, " ", 1);
+			*print = strjoin_n_del(*print, " ", 0);
 			count--;
 		}
 		ft_putstr(*print);
@@ -75,6 +75,6 @@ int					print_wchar_t(va_list list, char *sp)
 	else
 		ts.length = ft_putwchar_t(c);
 	ts.length += ft_strlen(print);
-	ft_strdel(&print);
+//	ft_strdel(&print);
 	return (ts.length);
 }

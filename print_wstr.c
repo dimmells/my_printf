@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:31:18 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/19 16:21:16 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 13:01:27 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ int				print_wstr(va_list list, char *sp)
 		ft_putwstr(wstr);
 	}
 	ts.length += ft_strlen(print);
-	ft_strdel(&print);
+//	ft_strdel(&print);
 	return (ts.length);
 }

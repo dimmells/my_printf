@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/17 13:24:03 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 12:59:14 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ static void			add_zero(t_specifier ts, char **print)
 	count = ts.width - ft_strlen(*print);
 	while (count > 0)
 	{
-		*print = strjoin_n_del("0", *print, 2);
+		*print = strjoin_n_del("0", *print, 0);
 		count--;
 	}
 	if (ts.space && ts.plus == 0)
-		*print = strjoin_n_del(" ", *print, 2);
+		*print = strjoin_n_del(" ", *print, 0);
 }
 
 static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 {
-	ft_strdel(itoa);
+//	ft_strdel(itoa);
 	*itoa = itoa_base(number, 10);
 	ts->plus = 0;
 	ts->space = 0;
@@ -66,7 +66,7 @@ int					print_ui(va_list list, char *sp)
 		add_space(ts, &print);
 	ft_putstr(print);
 	number = ft_strlen(print);
-	ft_strdel(&print);
-	ft_strdel(&itoa);
+//	ft_strdel(&print);
+//	ft_strdel(&itoa);
 	return (number);
 }
