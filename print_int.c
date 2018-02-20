@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 13:15:26 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 13:17:36 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static int		setup(t_specifier *ts, char **itoa, int number)
 		ts->plus = -1;
 		ts->space = 0;
 		number *= -1;
+		free(itoa);
+		itoa = NULL;
 //		ft_strdel(itoa);
 		*itoa = ft_itoa(number);
 		if (!ft_isdigit((*itoa)[0]))
@@ -66,6 +68,7 @@ int				print_int(va_list list, char *sp)
 
 	print = (char*)malloc(sizeof(char) * 5);
 	free(print);
+	print = NULL;
 	ts = struct_init();
 	number = va_arg(list, int);
 	itoa = get_specifier_info(&ts, sp, number);
