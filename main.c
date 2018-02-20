@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:23:23 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/19 16:45:34 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 13:15:04 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int			main(int ac, char **av)
 //	ft_printf("%x\n", 100);
 	test = (void*)123;
 //	ft_printf("%#o\n", 0);
-	a = ft_printf("before %x after", 42);
-	b = printf("\nbefore %x after\n", 42);
+	a = ft_printf("before %d after", 42);
+	b = printf("\nbefore %d after\n", 42);
 	printf("a = %d\nb = %d\n", a, b - 2);
 //	ft_printf("%5.d %5.0d\n", 0, 0);
 //	printf("%5.d %5.0d\n", 0, 0);
