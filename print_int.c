@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 13:20:52 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/20 13:22:01 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ static int		setup(t_specifier *ts, char **itoa, int number)
 		ts->plus = -1;
 		ts->space = 0;
 		number *= -1;
-//		free(*itoa);
-//		*itoa = NULL;
 		ft_strdel(itoa);
 		*itoa = ft_itoa(number);
 		if (!ft_isdigit((*itoa)[0]))
@@ -83,7 +81,7 @@ int				print_int(va_list list, char *sp)
 		add_space(ts, &print);
 	ft_putstr(print);
 	number = ft_strlen(print);
-//	ft_strdel(&print);
-//	ft_strdel(&itoa);
+	ft_strdel(&print);
+	ft_strdel(&itoa);
 	return (number);
 }
