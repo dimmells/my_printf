@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putwstr.c                                       :+:      :+:    :+:   */
+/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 16:08:14 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 12:54:15 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/02/21 13:10:17 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/02/21 13:11:53 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_putwstr(wchar_t *wstr)
+int			ft_wstrlen(wchar_t *wstr)
 {
 	int		i;
 	int		len;
@@ -21,7 +21,7 @@ int			ft_putwstr(wchar_t *wstr)
 	i = 0;
 	while (wstr[i])
 	{
-		len += ft_putwchar_t((unsigned int)wstr[i]);
+		len += get_size_wchar_t((unsigned int) wstr[i]);
 		i++;
 	}
 	return (len);

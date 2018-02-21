@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:31:18 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 16:31:21 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 12:58:35 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ int				print_str(va_list list, char *sp)
 	char		*print;
 	t_specifier	ts;
 
-	str = va_arg(list, char*);
 	ts = struct_init();
+	get_length(&ts, sp);
+	if (ts.l)
+		return (print_wstr(list, sp));
+	str = va_arg(list, char*);
 	get_str_precision(&ts, sp, str);
 	get_width(&ts, sp);
 	if (str && ts.width == (int)ft_strlen(str))

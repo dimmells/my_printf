@@ -6,26 +6,11 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:31:18 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 13:01:27 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 13:45:33 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static int		ft_wstrlen(wchar_t *wstr)
-{
-	int			i;
-	int			len;
-
-	len = 0;
-	i = 0;
-	while (wstr[i])
-	{
-		len += get_size_wchar_t((unsigned int) wstr[i]);
-		i++;
-	}
-	return (len);
-}
 
 static void		get_str_precision(t_specifier *ts, char *sp, wchar_t *wstr)
 {
@@ -63,7 +48,7 @@ int				print_wstr(va_list list, char *sp)
 	print = (char*)malloc(sizeof(char) * 1);
 	ts.length = ft_wstrlen(wstr);
 	if (ts.width != 0)
-		add_space_tostr(ts, &print);
+		add_space_towstr(ts, &print, wstr);
 	if (!ts.minus)
 	{
 		ft_putstr(print);
@@ -71,8 +56,8 @@ int				print_wstr(va_list list, char *sp)
 	}
 	else
 	{
-		ft_putstr(print);
 		ft_putwstr(wstr);
+		ft_putstr(print);
 	}
 	ts.length += ft_strlen(print);
 //	ft_strdel(&print);

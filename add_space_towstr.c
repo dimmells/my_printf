@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putwstr.c                                       :+:      :+:    :+:   */
+/*   add_space_towstr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 16:08:14 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 12:54:15 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/02/14 14:43:59 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/02/21 13:13:34 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_putwstr(wchar_t *wstr)
+void		add_space_towstr(t_specifier ts, char **print, wchar_t *wstr)
 {
-	int		i;
-	int		len;
+	int		count;
 
-	len = 0;
-	i = 0;
-	while (wstr[i])
-	{
-		len += ft_putwchar_t((unsigned int)wstr[i]);
-		i++;
-	}
-	return (len);
+	count = ts.width - ft_wstrlen(wstr);
+	if (!ts.minus)
+		while (count > 0)
+		{
+			if (ts.zero)
+				*print = strjoin_n_del("0", *print, 0);
+			else
+				*print = strjoin_n_del(" ", *print, 0);
+			count--;
+		}
+	else if (ts.minus)
+		while (count > 0)
+		{
+			*print = strjoin_n_del(*print, " ", 0);
+			count--;
+		}
 }
