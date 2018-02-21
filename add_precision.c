@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 12:57:00 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 11:20:58 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 11:22:04 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void		add_precision(t_specifier ts, char *itoa, char **print)
 		*print = strjoin_n_del(*print, "0", 1);
 		ts.precision--;
 	}
-	*print = strjoin_n_del(*print, itoa, 2);
+	*print = strjoin_n_del(*print, itoa, 1);
 }
