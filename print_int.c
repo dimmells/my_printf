@@ -6,12 +6,12 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 11:17:48 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 11:26:38 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
 static void		add_zero(t_specifier ts, char **print)
 {
 	int			count;
@@ -59,6 +59,9 @@ int				print_int(va_list list, char *sp, char type)
 	char		*itoa;
 	char		*print;
 	t_specifier	ts;
+
+	itoa = ft_strdup("");
+	ft_strdel(&itoa);
 
 	ts = struct_init();
 	get_flag(&ts, sp);
