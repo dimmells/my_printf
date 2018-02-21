@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 15:39:14 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 11:12:25 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int		setup(t_specifier *ts, char **itoa, int number)
 
 	if (number == 0 && ts->precision == 0)
 	{
-		ft_strdel(itoa);
+//		ft_strdel(itoa);
 		if (ts->width == 1)
 			ts->width--;
 		*itoa = ft_strdup("");
