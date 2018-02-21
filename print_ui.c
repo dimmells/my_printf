@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 11:35:38 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 11:37:30 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ static void			add_zero(t_specifier ts, char **print)
 
 static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 {
+	int				len;
+
+	len = ft_strlen(*itoa);
 //	ft_strdel(itoa);
 	*itoa = itoa_base(number, 10);
 	ts->plus = 0;
