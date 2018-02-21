@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 11:17:07 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 11:17:48 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int				print_int(va_list list, char *sp, char type)
 		add_space(ts, &print);
 	ft_putstr(print);
 	number = ft_strlen(print);
-//	ft_strdel(&print);
+	ft_strdel(&print);
 //	ft_strdel(&itoa);
 	return (number);
 }
