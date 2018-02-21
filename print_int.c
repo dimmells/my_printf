@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 11:26:38 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 12:15:13 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ int				print_int(va_list list, char *sp, char type)
 	char		*itoa;
 	char		*print;
 	t_specifier	ts;
-
-	itoa = ft_strdup("");
-	ft_strdel(&itoa);
 
 	ts = struct_init();
 	get_flag(&ts, sp);

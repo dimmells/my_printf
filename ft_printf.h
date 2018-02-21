@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:08:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 16:49:44 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 11:49:49 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				print_int(va_list list, char *sp, char type);
 int				print_percent(char*sp);
 int				print_hex(va_list list, char *sp, char type);
 int				print_octal(va_list list, char *sp, char type);
-int				print_ui(va_list list, char *sp);
+int				print_ui(va_list list, char *sp, char type);
 int				print_char(va_list list, char *sp);
 int				print_wchar_t(va_list list, char *sp);
 int				print_pointer(va_list list, char *sp);

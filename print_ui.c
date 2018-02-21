@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 11:40:26 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 11:48:48 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 	int				len;
 
 	len = ft_strlen(*itoa);
-//	ft_strdel(itoa);
-//	*itoa = itoa_base(number, 10);
 	ts->plus = 0;
 	ts->space = 0;
 	ts->length = ft_strlen(*itoa);
@@ -53,7 +51,7 @@ static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 		ts->zero = 0;
 }
 
-int					print_ui(va_list list, char *sp)
+int					print_ui(va_list list, char *sp, char type)
 {
 	unsigned int	number;
 	char			*itoa;
@@ -61,10 +59,10 @@ int					print_ui(va_list list, char *sp)
 	t_specifier		ts;
 
 	ts = struct_init();
-//	number = va_arg(list, unsigned int);
-//i	itoa = get_specifier_info(&ts, sp, number);
 	get_flag(&ts, sp);
 	get_length(&ts, sp);
+	if (type == 'U')
+		ts.l = 1;
 	itoa = get_argument_base(list, &ts, 10);
 	ts.length = ft_strlen(itoa);
 	number = 1;
