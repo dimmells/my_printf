@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 12:57:00 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 13:45:25 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:06:58 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,19 @@ void		add_precision(t_specifier ts, char *itoa, char **print)
 	ts.precision -= ft_strlen(itoa);
 	while (ts.precision > 0)
 	{
-		*print = strjoin_n_del(*print, "0", 1);
+		*print = ft_strjoin(*print, "0");
 		ts.precision--;
 	}
-	*print = strjoin_n_del(*print, itoa, 1);
+	*print = ft_strjoin(*print, itoa);
+}
+
+void		add_precision_int(t_specifier ts, char *itoa, char **print)
+{
+	ts.precision -= ft_strlen(itoa);
+	while (ts.precision > 0)
+	{
+		*print = ft_strjoin(*print, "0");
+		ts.precision--;
+	}
+	*print = ft_strjoin(*print, itoa);
 }

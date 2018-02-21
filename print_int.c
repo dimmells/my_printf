@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 12:15:13 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:47:01 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static void		add_zero(t_specifier ts, char **print)
 	count = ts.width - ft_strlen(*print);
 	while (count > 0)
 	{
-		*print = strjoin_n_del("0", *print, 2);
+		*print = ft_strjoin("0", *print);
 		count--;
 	}
 	if (ts.space && ts.plus == 0)
-		*print = strjoin_n_del(" ", *print, 2);
+		*print = ft_strjoin(" ", *print);
 	add_sign(ts, print);
 }
 
@@ -33,9 +33,10 @@ static int		setup(t_specifier *ts, char **itoa, int number)
 {
 	int			kostyl;
 
+	if (ts->width < ts->length)
+		ts->width = ts->length;
 	if (number == 0 && ts->precision == 0)
 	{
-		ft_strdel(itoa);
 		if (ts->width == 1)
 			ts->width--;
 		*itoa = ft_strdup("");
@@ -50,6 +51,17 @@ static int		setup(t_specifier *ts, char **itoa, int number)
 			kostyl = 1;
 	}
 	return (kostyl);
+}
+
+static void		add_gifts(t_specifier ts, char *itoa, char **print, int kostyl)
+{
+	add_precision_int(ts, itoa + kostyl, print);
+	if (ts.space)
+		ts.width--;
+	if (ts.zero)
+		add_zero(ts, print);
+	else
+		add_space(ts, print);
 }
 
 int				print_int(va_list list, char *sp, char type)
@@ -74,20 +86,9 @@ int				print_int(va_list list, char *sp, char type)
 		number = 0;
 	get_precision(&ts, sp, number);
 	get_width(&ts, sp);
-	if (ts.width < ts.length)
-		ts.width = ts.length;
 	kostyl = setup(&ts, &itoa, number);
 	print = (char*)malloc(sizeof(char));
-	add_precision(ts, itoa + kostyl, &print);
-	if (ts.space)
-		ts.width--;
-	if (ts.zero)
-		add_zero(ts, &print);
-	else
-		add_space(ts, &print);
+	add_gifts(ts, itoa, &print, kostyl);
 	ft_putstr(print);
-	number = ft_strlen(print);
-	ft_strdel(&print);
-//	ft_strdel(&itoa);
-	return (number);
+	return (ft_strlen(print));
 }

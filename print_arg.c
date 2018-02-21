@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 14:16:37 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 11:50:13 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:01:47 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,5 @@ int			print_arg(const char **format, va_list list)
 		length = print_wchar_t(list, sp);
 	else if (type == 'p')
 		length = print_pointer(list, sp);
-//	ft_strdel(&sp);
 	return (length);
 }

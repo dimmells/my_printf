@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 12:19:49 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 18:00:28 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void			add_hash(t_specifier *ts, char **print)
 {
 	if (ts->hash == 1)
-		*print = strjoin_n_del("0x", *print, 0);
+		*print = ft_strjoin("0x", *print);
 }
 
 static void			add_zero(t_specifier ts, char **print)
@@ -29,11 +29,11 @@ static void			add_zero(t_specifier ts, char **print)
 	count = ts.width - ft_strlen(*print);
 	while (count > 0)
 	{
-		*print = strjoin_n_del("0", *print, 0);
+		*print = ft_strjoin("0", *print);
 		count--;
 	}
 	if (ts.space && ts.plus == 0)
-		*print = strjoin_n_del(" ", *print, 0);
+		*print = ft_strjoin(" ", *print);
 	add_hash(&ts, print);
 }
 
@@ -42,7 +42,6 @@ static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 	int				len;
 
 	len = ft_strlen(*itoa);
-//	ft_strdel(itoa);
 	*itoa = itoa_base(number, 16);
 	ts->plus = 0;
 	ts->space = 0;
@@ -52,7 +51,6 @@ static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 		ts->width = ts->length;
 	if (number == 0 && ts->precision == 0)
 	{
-//		ft_strdel(itoa);
 		if (ts->width == 1)
 			ts->width--;
 		*itoa = ft_strdup("");
@@ -85,7 +83,5 @@ int					print_pointer(va_list list, char *sp)
 	}
 	ft_putstr(print);
 	number = ft_strlen(print);
-//	ft_strdel(&print);
-//	ft_strdel(&itoa);
 	return (number);
 }

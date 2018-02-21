@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 12:45:32 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 11:19:54 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:08:19 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		add_sign(t_specifier ts, char **print)
 {
 	if (ts.plus == 1)
-		*print = strjoin_n_del("+", *print, 2);
+		*print = ft_strjoin("+", *print);
 	if (ts.plus == -1)
-		*print = strjoin_n_del("-", *print, 2);
+		*print = ft_strjoin("-", *print);
 }

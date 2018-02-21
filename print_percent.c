@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 10:54:13 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 12:56:07 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:57:32 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ int				print_percent(char *sp)
 	if (ts.width > 1)
 		add_gifts(ts, &print);
 	ft_putstr(print);
-//	ft_strdel(&print);
 	return (ts.width);
 }

@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:08:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 13:12:22 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 14:06:00 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void			add_zeroes(t_specifier ts, char **print);
 void			add_sign(t_specifier ts, char **print);
 void			add_space(t_specifier ts, char **print);
 void			add_precision(t_specifier ts, char *itoa, char **print);
+void			add_precision_int(t_specifier ts, char *itoa, char **print);
 void			add_space_towstr(t_specifier ts, char **print, wchar_t *wstr);
 t_specifier		struct_init(void);
 char			*strjoin_n_del(char *s1, char *s2, int del);
