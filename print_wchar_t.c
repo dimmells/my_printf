@@ -6,13 +6,13 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:31:18 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 13:00:56 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 18:19:39 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		get_str_precision(t_specifier *ts, char *sp)
+static void			get_str_precision(t_specifier *ts, char *sp)
 {
 	char		*tmp;
 
@@ -25,21 +25,19 @@ static void		get_str_precision(t_specifier *ts, char *sp)
 		ts->precision = 1;
 }
 
-static void		print_with_space(t_specifier *ts, char **print, unsigned int c)
+static void			print_with_space(t_specifier *ts, char **print,
+		unsigned int c)
 {
-	int			count;
-	int			size;
+	int				count;
+	int				size;
 
 	size = get_size_wchar_t(c);
 	count = ts->width - ft_strlen(*print) - size;
 	ts->length += size;
 	if (!ts->minus)
 	{
-		while (count > 0)
-		{
-			*print = strjoin_n_del(" ", *print, 0);
-			count--;
-		}
+		while (count-- > 0)
+			*print = ft_strjoin(" ", *print);
 		ft_putstr(*print);
 		ft_putwchar_t(c);
 	}
@@ -48,7 +46,7 @@ static void		print_with_space(t_specifier *ts, char **print, unsigned int c)
 		ft_putwchar_t(c);
 		while (count > 0)
 		{
-			*print = strjoin_n_del(*print, " ", 0);
+			*print = ft_strjoin(*print, " ");
 			count--;
 		}
 		ft_putstr(*print);
@@ -59,7 +57,7 @@ int					print_wchar_t(va_list list, char *sp)
 {
 	unsigned int	c;
 	char			*print;
-	t_specifier	ts;
+	t_specifier		ts;
 
 	c = va_arg(list, unsigned int);
 	ts = struct_init();
@@ -75,6 +73,5 @@ int					print_wchar_t(va_list list, char *sp)
 	else
 		ts.length = ft_putwchar_t(c);
 	ts.length += ft_strlen(print);
-//	ft_strdel(&print);
 	return (ts.length);
 }

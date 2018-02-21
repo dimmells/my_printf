@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:31:18 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 17:03:36 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 18:59:15 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,8 @@ static void		print_with_space(t_specifier ts, char **print, unsigned char c)
 	else if (ts.minus)
 	{
 		ft_putchar(c);
-		while (count > 0)
-		{
+		while (count-- > 0)
 			*print = ft_strjoin(*print, " ");
-			count--;
-		}
 		ft_putstr(*print);
 	}
 }

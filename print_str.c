@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:31:18 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 17:00:25 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 19:07:11 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ static void		get_str_precision(t_specifier *ts, char *sp, char *str)
 		ts->precision = 1;
 }
 
+static void		setup(t_specifier *ts, char *str, char *sp)
+{
+	get_str_precision(ts, sp, str);
+	get_width(ts, sp);
+	if (str && ts->width == (int)ft_strlen(str))
+		ts->width = 0;
+	get_flag(ts, sp);
+}
+
 int				print_str(va_list list, char *sp)
 {
 	char		*str;
@@ -38,11 +47,7 @@ int				print_str(va_list list, char *sp)
 	if (ts.l)
 		return (print_wstr(list, sp));
 	str = va_arg(list, char*);
-	get_str_precision(&ts, sp, str);
-	get_width(&ts, sp);
-	if (str && ts.width == (int)ft_strlen(str))
-		ts.width = 0;
-	get_flag(&ts, sp);
+	setup(&ts, str, sp);
 	if (!str && ts.width == 0 && ts.precision != 0)
 	{
 		ft_putstr("(null)");

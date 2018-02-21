@@ -6,12 +6,12 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:53:08 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/01/26 18:29:41 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 18:31:51 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
 int		ft_printf(const char *format, ...)
 {
 	va_list		list;

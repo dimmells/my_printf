@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:31:18 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 13:45:33 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 18:28:23 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ static void		get_str_precision(t_specifier *ts, char *sp, wchar_t *wstr)
 		ts->precision = ft_wstrlen(wstr);
 	else
 		ts->precision = 1;
+}
+
+static void		print_this(t_specifier ts, char *print, wchar_t *wstr)
+{
+	if (!ts.minus)
+	{
+		ft_putstr(print);
+		ft_putwstr(wstr);
+	}
+	else
+	{
+		ft_putwstr(wstr);
+		ft_putstr(print);
+	}
 }
 
 int				print_wstr(va_list list, char *sp)
@@ -49,17 +63,7 @@ int				print_wstr(va_list list, char *sp)
 	ts.length = ft_wstrlen(wstr);
 	if (ts.width != 0)
 		add_space_towstr(ts, &print, wstr);
-	if (!ts.minus)
-	{
-		ft_putstr(print);
-		ft_putwstr(wstr);
-	}
-	else
-	{
-		ft_putwstr(wstr);
-		ft_putstr(print);
-	}
+	print_this(ts, print, wstr);
 	ts.length += ft_strlen(print);
-//	ft_strdel(&print);
 	return (ts.length);
 }

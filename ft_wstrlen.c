@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 13:10:17 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 13:11:53 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 18:44:07 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			ft_wstrlen(wchar_t *wstr)
 	i = 0;
 	while (wstr[i])
 	{
-		len += get_size_wchar_t((unsigned int) wstr[i]);
+		len += get_size_wchar_t((unsigned int)wstr[i]);
 		i++;
 	}
 	return (len);

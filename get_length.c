@@ -6,11 +6,25 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:41:56 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/20 14:09:14 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 18:49:46 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void	get_length_two(t_specifier *ts, char *sp, int len_end)
+{
+	if (sp[len_end] == 'j')
+	{
+		ts->j = 1;
+		ts->is_it_have_size = 1;
+	}
+	else if (sp[len_end] == 'z')
+	{
+		ts->z = 1;
+		ts->is_it_have_size = 1;
+	}
+}
 
 void		get_length(t_specifier *ts, char *sp)
 {
@@ -33,14 +47,5 @@ void		get_length(t_specifier *ts, char *sp)
 			ts->l = 1;
 		ts->is_it_have_size = 1;
 	}
-	else if (sp[len_end] == 'j')
-	{
-		ts->j = 1;
-		ts->is_it_have_size = 1;
-	}
-	else if (sp[len_end] == 'z')
-	{
-		ts->z = 1;
-		ts->is_it_have_size = 1;
-	}
+	get_length_two(ts, sp, len_end);
 }

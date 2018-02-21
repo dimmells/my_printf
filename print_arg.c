@@ -6,11 +6,29 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 14:16:37 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 17:01:47 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 19:03:13 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	print_arg_two(va_list list, char type, char *sp)
+{
+	int		length;
+
+	length = 0;
+	if (type == 'u' || type == 'U')
+		length = print_ui(list, sp, type);
+	else if (type == 'c')
+		length = print_char(list, sp);
+	else if (type == 'C')
+		length = print_wchar_t(list, sp);
+	else if (type == 'p')
+		length = print_pointer(list, sp);
+	else if (type == 'o' || type == 'O')
+		length = print_octal(list, sp, type);
+	return (length);
+}
 
 int			print_arg(const char **format, va_list list)
 {
@@ -36,15 +54,7 @@ int			print_arg(const char **format, va_list list)
 		length = print_percent(sp);
 	else if (type == 'x' || type == 'X')
 		length = print_hex(list, sp, type);
-	else if (type == 'o' || type == 'O')
-		length = print_octal(list, sp, type);
-	else if (type == 'u' || type == 'U')
-		length = print_ui(list, sp, type);
-	else if (type == 'c')
-		length = print_char(list, sp);
-	else if (type == 'C')
-		length = print_wchar_t(list, sp);
-	else if (type == 'p')
-		length = print_pointer(list, sp);
+	else
+		length = print_arg_two(list, type, sp);
 	return (length);
 }

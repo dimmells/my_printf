@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 18:03:28 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 18:13:21 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 		ts->zero = 0;
 }
 
+static void			add_gifts(t_specifier ts, char *itoa, char **print)
+{
+	add_precision(ts, itoa, print);
+	if (ts.zero)
+		add_zero(ts, print);
+	else
+		add_space(ts, print);
+}
+
 int					print_ui(va_list list, char *sp, char type)
 {
 	unsigned int	number;
@@ -73,12 +82,7 @@ int					print_ui(va_list list, char *sp, char type)
 	get_width(&ts, sp);
 	setup(&ts, &itoa, number);
 	print = (char*)malloc(sizeof(char));
-	add_precision(ts, itoa, &print);
-	if (ts.zero)
-		add_zero(ts, &print);
-	else
-		add_space(ts, &print);
+	add_gifts(ts, itoa, &print);
 	ft_putstr(print);
-	number = ft_strlen(print);
-	return (number);
+	return (ft_strlen(print));
 }
