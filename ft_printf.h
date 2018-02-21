@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:08:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 14:06:00 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 19:15:06 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void			add_precision(t_specifier ts, char *itoa, char **print);
 void			add_precision_int(t_specifier ts, char *itoa, char **print);
 void			add_space_towstr(t_specifier ts, char **print, wchar_t *wstr);
 t_specifier		struct_init(void);
-char			*strjoin_n_del(char *s1, char *s2, int del);
 char			*get_specifier_info(t_specifier *ts, char *sp, int number);
 char			*itoa_base(uintmax_t number, int base);
 char			*get_argument_int(va_list list, t_specifier *ts);

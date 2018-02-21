@@ -6,7 +6,7 @@
 #    By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/29 14:45:07 by ahryhory          #+#    #+#              #
-#    Updated: 2018/02/21 13:12:41 by dmelnyk          ###   ########.fr        #
+#    Updated: 2018/02/21 19:14:50 by dmelnyk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,6 @@ SRC += get_size_wchar_t.c
 SRC += get_argument_int.c
 SRC += get_argument_base.c
 SRC += struct_init.c
-SRC += strjoin_n_del.c
 SRC += add_space_tostr.c
 SRC += add_zeroes.c
 SRC += add_sign.c
