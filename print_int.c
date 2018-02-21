@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 11:12:25 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 11:14:08 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static void		add_zero(t_specifier ts, char **print)
 	count = ts.width - ft_strlen(*print);
 	while (count > 0)
 	{
-		*print = strjoin_n_del("0", *print, 2);
+		*print = strjoin_n_del("0", *print, 0);
 		count--;
 	}
 	if (ts.space && ts.plus == 0)
-		*print = strjoin_n_del(" ", *print, 2);
+		*print = strjoin_n_del(" ", *print, 0);
 	add_sign(ts, print);
 }
 
