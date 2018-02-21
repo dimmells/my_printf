@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:00:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/02/21 11:37:30 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/02/21 11:40:26 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void			setup(t_specifier *ts, char **itoa, uintmax_t number)
 
 	len = ft_strlen(*itoa);
 //	ft_strdel(itoa);
-	*itoa = itoa_base(number, 10);
+//	*itoa = itoa_base(number, 10);
 	ts->plus = 0;
 	ts->space = 0;
 	ts->length = ft_strlen(*itoa);
@@ -61,8 +61,19 @@ int					print_ui(va_list list, char *sp)
 	t_specifier		ts;
 
 	ts = struct_init();
-	number = va_arg(list, unsigned int);
-	itoa = get_specifier_info(&ts, sp, number);
+//	number = va_arg(list, unsigned int);
+//i	itoa = get_specifier_info(&ts, sp, number);
+	get_flag(&ts, sp);
+	get_length(&ts, sp);
+	itoa = get_argument_base(list, &ts, 10);
+	ts.length = ft_strlen(itoa);
+	number = 1;
+	if (ft_atoi(itoa) == 0)
+		number = 0;
+	get_precision(&ts, sp, number);
+	get_width(&ts, sp);
+	if (ts.width < ts.length)
+		ts.width = ts.length;
 	setup(&ts, &itoa, number);
 	print = (char*)malloc(sizeof(char));
 	add_precision(ts, itoa, &print);
